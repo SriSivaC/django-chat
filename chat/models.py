@@ -1,4 +1,6 @@
 """Chat related models"""
+from __future__ import unicode_literals
+
 import django.utils.timezone
 from django.db import models
 from django.db.models.signals import post_save
@@ -16,7 +18,7 @@ class Room(models.Model):
     created_by = models.ForeignKey('auth.User', db_column='created_by',
                                    null=False, blank=True,
                                    related_name='my_chat_rooms')
-    users = models.ManyToManyField('auth.User', null=False, blank=False,
+    users = models.ManyToManyField('auth.User', blank=False,
                                    related_name='chat_rooms')
 
 
