@@ -6,7 +6,7 @@ django-chat
    :target: https://codeclimate.com/github/tomi77/django-chat
    :alt: Code Climate
 
-A simple chat
+A simple Django chat application
 
 Installation
 ============
@@ -18,12 +18,19 @@ Installation
 Quick start
 ===========
 
-Enable ``chat`` and ``django.contrib.auth``
+Add ``chat`` to `INSTALLED_APPS`. ``django.contrib.auth`` and ``django.contrib.contenttypes`` are also required.
 
 .. sourcecode:: python
 
    INSTALLED_APPS = [
        ...
+       'django.contrib.contenttypes',
        'django.contrib.auth',
        'chat',
    ]
+
+Create database
+
+.. sourcecode:: sh
+
+   ./manage.py migrate
