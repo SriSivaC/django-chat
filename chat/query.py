@@ -7,7 +7,8 @@ class MessageQuerySet(QuerySet):
 
     def undelivered(self, to):
         """Fetch only undelivered messages"""
-        queryset = self.filter(deliveries__delivered_at__isnull=True)
         if to is not None:
-            queryset = queryset.filter(deliveries__receiver=to)
-        return queryset
+            return self.filter(deliveries__receiver=to,
+                               deliveries__delivered_at__isnull=True)
+        else:
+            return self.filter(deliveries__delivered_at__isnull=True)
