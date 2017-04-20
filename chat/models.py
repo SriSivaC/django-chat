@@ -27,6 +27,7 @@ class Room(models.Model):
     class Meta(object):
         verbose_name = _('Room')
         verbose_name_plural = _('Rooms')
+        index_together = ['name']
 
 
 class Message(models.Model):
