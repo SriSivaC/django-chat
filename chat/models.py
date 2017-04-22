@@ -5,11 +5,13 @@ import django.utils.timezone
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from .manager import MessageManager
 
 
+@python_2_unicode_compatible
 class Room(models.Model):
     """A class describing a chat room"""
     name = models.CharField(max_length=255, null=False, blank=False,
@@ -29,7 +31,11 @@ class Room(models.Model):
         verbose_name_plural = _('Rooms')
         index_together = ['name']
 
+    def __str__(self):
+        return self.name
 
+
+@python_2_unicode_compatible
 class Message(models.Model):
     """A class describing a chat message"""
     room = models.ForeignKey('chat.Room', null=False, blank=False,
@@ -46,6 +52,9 @@ class Message(models.Model):
     class Meta(object):
         verbose_name = _('Message')
         verbose_name_plural = _('Messages')
+
+    def __str__(self):
+        return self.message
 
 
 class MessageDelivery(models.Model):
