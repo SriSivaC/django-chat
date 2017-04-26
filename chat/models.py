@@ -34,6 +34,9 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+    def __repr__(self):
+        return 'chat.models.Room[pk={}]'.format(self.pk)
+
 
 @python_2_unicode_compatible
 class Message(models.Model):
@@ -56,6 +59,9 @@ class Message(models.Model):
     def __str__(self):
         return self.message
 
+    def __repr__(self):
+        return 'chat.models.Message[pk={}]'.format(self.pk)
+
 
 class MessageDelivery(models.Model):
     """A class describing a message delivery status"""
@@ -71,6 +77,9 @@ class MessageDelivery(models.Model):
     class Meta(object):
         verbose_name = _('Message delivery')
         verbose_name_plural = _('Messages delivery')
+
+    def __repr__(self):
+        return 'chat.models.MessageDelivery[pk={}]'.format(self.pk)
 
 
 @receiver(post_save, sender=Message)
