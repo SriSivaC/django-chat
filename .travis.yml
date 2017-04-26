@@ -19,7 +19,7 @@ matrix:
       env: DJANGO=1.11
 
 install:
-  - pip install coveralls
+  - pip install coveralls pyyaml south
   - pip install -q Django==$DJANGO
   - pip install --upgrade mock
 
