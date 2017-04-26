@@ -1,0 +1,49 @@
+- pk: 1
+  model: 'auth.User'
+  fields:
+    username: 'user1'
+- pk: 2
+  model: 'auth.User'
+  fields:
+    username: 'user2'
+- pk: 3
+  model: 'auth.User'
+  fields:
+    username: 'user3'
+- pk: 4
+  model: 'auth.User'
+  fields:
+    username: 'user4'
+- pk: 5
+  model: 'auth.User'
+  fields:
+    username: 'user5'
+
+- pk: 1
+  model: 'chat.Room'
+  fields:
+    name: 'Room 1'
+    created_by: 1
+    users: [1, 2]
+- pk: 2
+  model: 'chat.Room'
+  fields:
+    name: 'Room 2'
+    created_by: 3
+    users: [3, 4, 5]
+
+- model: 'chat.Message'
+  fields:
+    room: 1
+    sender: 1
+    message: 'message 1'
+- model: 'chat.Message'
+  fields:
+    room: 1
+    sender: 2
+    message: 'message 2'
+- model: 'chat.Message'
+  fields:
+    room: 2
+    sender: 3
+    message: 'message 3'
