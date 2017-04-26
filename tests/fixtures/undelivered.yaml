@@ -32,17 +32,20 @@
     created_by: 3
     users: [3, 4, 5]
 
-- model: 'chat.Message'
+- pk: 1
+  model: 'chat.Message'
   fields:
     room: 1
     sender: 1
     message: 'message 1'
-- model: 'chat.Message'
+- pk: 2
+  model: 'chat.Message'
   fields:
     room: 1
     sender: 2
     message: 'message 2'
-- model: 'chat.Message'
+- pk: 3
+  model: 'chat.Message'
   fields:
     room: 2
     sender: 3

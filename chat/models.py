@@ -1,6 +1,7 @@
 """Chat related models"""
 from __future__ import unicode_literals
 
+import django
 import django.utils.timezone
 from django.db import models
 from django.db.models.signals import post_save
@@ -29,7 +30,10 @@ class Room(models.Model):
     class Meta(object):
         verbose_name = _('Room')
         verbose_name_plural = _('Rooms')
-        index_together = ['name']
+        if django.VERSION[:2] > (1, 4):
+            index_together = [
+                ['name'],
+            ]
 
     def __str__(self):
         return self.name
