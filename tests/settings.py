@@ -6,7 +6,7 @@ SECRET_KEY = 'qaz123'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:'
+        'NAME': 'test.sqlite' if django.VERSION[:2] <= (1, 6) else ':memory:'
     }
 }
 
