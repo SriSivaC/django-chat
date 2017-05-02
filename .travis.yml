@@ -23,7 +23,7 @@ matrix:
       env: DJANGO=1.11
 
 install:
-  - pip install coveralls pyyaml south
+  - pip install coveralls pyyaml south django-extra-tools>=0.3.0
   - pip install -q Django==$DJANGO
   - pip install --upgrade mock
 
