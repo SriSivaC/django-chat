@@ -44,5 +44,6 @@ setup(
     },
     install_requires=[
         'django>=1.4',
+        'django-extra-tools>=0.3.0',
     ]
 )

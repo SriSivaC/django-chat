@@ -1,28 +1,21 @@
 """Chat related models"""
 from __future__ import unicode_literals
 
-import django
-import django.utils.timezone
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django_extra_tools.db.models import timestampable
 
 from .manager import MessageManager
 
 
 @python_2_unicode_compatible
-class Room(models.Model):
+class Room(timestampable.CreatedMixin, models.Model):
     """A class describing a chat room"""
     name = models.CharField(max_length=255, null=False, blank=False,
                             db_index=True, verbose_name=_('Room name'))
-    created_at = models.DateTimeField(default=django.utils.timezone.now,
-                                      verbose_name=_('Created date'))
-    created_by = models.ForeignKey('auth.User', db_column='created_by',
-                                   null=False, blank=True,
-                                   related_name='my_chat_rooms',
-                                   verbose_name=_('Room creator'))
     users = models.ManyToManyField('auth.User', blank=False,
                                    related_name='chat_rooms',
                                    verbose_name=_('Room users'))
@@ -39,7 +32,7 @@ class Room(models.Model):
 
 
 @python_2_unicode_compatible
-class Message(models.Model):
+class Message(timestampable.CreatedAtMixin, models.Model):
     """A class describing a chat message"""
     room = models.ForeignKey('chat.Room', null=False, blank=False,
                              on_delete=models.CASCADE, related_name='messages',
@@ -47,8 +40,6 @@ class Message(models.Model):
     sender = models.ForeignKey('auth.User', null=False, blank=False,
                                verbose_name=_('Message author'))
     message = models.TextField(verbose_name=_('Message'))
-    created_at = models.DateTimeField(default=django.utils.timezone.now,
-                                      verbose_name=_('Created date'))
 
     objects = MessageManager()
 

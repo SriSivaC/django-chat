@@ -11,9 +11,9 @@ class Migration(SchemaMigration):
         # Adding model 'Room'
         db.create_table('chat_room', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'chat_room_created', blank=True, db_column=u'created_by', to=orm['auth.User'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255, db_index=True)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'my_chat_rooms', blank=True, db_column=u'created_by', to=orm['auth.User'])),
         ))
         db.send_create_signal('chat', ['Room'])
 
@@ -29,10 +29,10 @@ class Migration(SchemaMigration):
         # Adding model 'Message'
         db.create_table('chat_message', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('room', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'messages', to=orm['chat.Room'])),
             ('sender', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('message', self.gf('django.db.models.fields.TextField')()),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
         ))
         db.send_create_signal('chat', ['Message'])
 
@@ -92,7 +92,7 @@ class Migration(SchemaMigration):
         },
         'chat.message': {
             'Meta': {'object_name': 'Message'},
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'message': ('django.db.models.fields.TextField', [], {}),
             'room': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'messages'", 'to': "orm['chat.Room']"}),
@@ -107,8 +107,8 @@ class Migration(SchemaMigration):
         },
         'chat.room': {
             'Meta': {'object_name': 'Room'},
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'created_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'my_chat_rooms'", 'blank': 'True', 'db_column': "u'created_by'", 'to': "orm['auth.User']"}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'created_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'chat_room_created'", 'blank': 'True', 'db_column': "u'created_by'", 'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'}),
             'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "u'chat_rooms'", 'symmetrical': 'False', 'to': "orm['auth.User']"})

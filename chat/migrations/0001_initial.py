@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import django.utils.timezone
 from django.conf import settings
 
 
@@ -17,8 +16,8 @@ class Migration(migrations.Migration):
             name='Message',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('created_at', models.DateTimeField(verbose_name='Creation date', auto_now_add=True)),
                 ('message', models.TextField(verbose_name='Message')),
-                ('created_at', models.DateTimeField(verbose_name='Created date', default=django.utils.timezone.now)),
             ],
             options={
                 'verbose_name': 'Message',
@@ -42,9 +41,9 @@ class Migration(migrations.Migration):
             name='Room',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('created_at', models.DateTimeField(verbose_name='Creation date', auto_now_add=True)),
                 ('name', models.CharField(verbose_name='Room name', max_length=255, db_index=True)),
-                ('created_at', models.DateTimeField(verbose_name='Created date', default=django.utils.timezone.now)),
-                ('created_by', models.ForeignKey(verbose_name='Room creator', blank=True, db_column='created_by', related_name='my_chat_rooms', to=settings.AUTH_USER_MODEL)),
+                ('created_by', models.ForeignKey(verbose_name='Created by', blank=True, db_column='created_by', related_name='chat_room_created', to=settings.AUTH_USER_MODEL)),
                 ('users', models.ManyToManyField(verbose_name='Room users', related_name='chat_rooms', to=settings.AUTH_USER_MODEL)),
             ],
             options={
