@@ -1,6 +1,7 @@
 """Chat related models"""
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
@@ -16,9 +17,9 @@ class Room(timestampable.CreatedMixin, models.Model):
     """A class describing a chat room"""
     name = models.CharField(max_length=255, null=False, blank=False,
                             db_index=True, verbose_name=_('Room name'))
-    users = models.ManyToManyField('auth.User', blank=False,
-                                   related_name='chat_rooms',
-                                   verbose_name=_('Room users'))
+    users = models.ManyToManyField(
+        getattr(settings, 'AUTH_USER_MODEL', 'auth.User'),  # Django 1.4 hack
+        blank=False, related_name='chat_rooms', verbose_name=_('Room users'))
 
     class Meta(object):
         verbose_name = _('Room')
@@ -37,8 +38,10 @@ class Message(timestampable.CreatedAtMixin, models.Model):
     room = models.ForeignKey('chat.Room', null=False, blank=False,
                              on_delete=models.CASCADE, related_name='messages',
                              verbose_name=_('Room'))
-    sender = models.ForeignKey('auth.User', null=False, blank=False,
-                               verbose_name=_('Message author'))
+    sender = models.ForeignKey(
+        getattr(settings, 'AUTH_USER_MODEL', 'auth.User'),  # Django 1.4 hack
+        null=False, blank=False,
+        verbose_name=_('Message author'))
     message = models.TextField(verbose_name=_('Message'))
 
     objects = MessageManager()
@@ -60,8 +63,9 @@ class MessageDelivery(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='deliveries',
                                 verbose_name=_('Message'))
-    receiver = models.ForeignKey('auth.User', null=False, blank=False,
-                                 verbose_name=_('Message receiver'))
+    receiver = models.ForeignKey(
+        getattr(settings, 'AUTH_USER_MODEL', 'auth.User'),  # Django 1.4 hack
+        null=False, blank=False, verbose_name=_('Message receiver'))
     delivered_at = models.DateTimeField(null=True, blank=True,
                                         verbose_name=_('Message delivery date'))
 
