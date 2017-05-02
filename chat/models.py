@@ -16,7 +16,7 @@ from .manager import MessageManager
 class Room(models.Model):
     """A class describing a chat room"""
     name = models.CharField(max_length=255, null=False, blank=False,
-                            verbose_name=_('Room name'))
+                            db_index=True, verbose_name=_('Room name'))
     created_at = models.DateTimeField(default=django.utils.timezone.now,
                                       verbose_name=_('Created date'))
     created_by = models.ForeignKey('auth.User', db_column='created_by',
@@ -30,10 +30,6 @@ class Room(models.Model):
     class Meta(object):
         verbose_name = _('Room')
         verbose_name_plural = _('Rooms')
-        if django.VERSION[:2] > (1, 4):
-            index_together = [
-                ['name'],
-            ]
 
     def __str__(self):
         return self.name

@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Room'
         db.create_table('chat_room', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=255, db_index=True)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
             ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'my_chat_rooms', blank=True, db_column=u'created_by', to=orm['auth.User'])),
         ))
@@ -110,7 +110,7 @@ class Migration(SchemaMigration):
             'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'created_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'my_chat_rooms'", 'blank': 'True', 'db_column': "u'created_by'", 'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'}),
             'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "u'chat_rooms'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
         },
         'contenttypes.contenttype': {
