@@ -2,17 +2,15 @@
 # Copyright (C) 2017 Tomasz Jakub Rup
 # This file is distributed under the same license as the django-chat package.
 # Tomasz Jakub Rup <tomasz.rup@gmail.com>, 2017.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1.0\n"
-"Report-Msgid-Bugs-To: Tomasz Jakub Rup <tomasz.rup@gmail.com>\n"
+"Project-Id-Version: django-chat\n"
+"Report-Msgid-Bugs-To: https://github.com/tomi77/django-chat/issues\n"
 "POT-Creation-Date: 2017-05-02 14:48+0200\n"
 "PO-Revision-Date: 2017-04-19 10:02+0200\n"
 "Last-Translator: Tomasz Jakub Rup <tomasz.rup@gmail.com>\n"
-"Language-Team: Polish <pl@li.org>\n"
-"Language: Polish\n"
+"Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
