@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-chat\n"
 "Report-Msgid-Bugs-To: https://github.com/tomi77/django-chat/issues\n"
-"POT-Creation-Date: 2017-05-02 14:48+0200\n"
-"PO-Revision-Date: 2017-04-19 10:02+0200\n"
+"POT-Creation-Date: 2017-05-07 16:34+0200\n"
+"PO-Revision-Date: 2017-05-07 16:34+0200\n"
 "Last-Translator: Tomasz Jakub Rup <tomasz.rup@gmail.com>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -18,46 +18,38 @@ msgstr ""
 "%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: models.py:18
+msgid "Chat"
+msgstr "Czat"
+
 msgid "Room name"
 msgstr "Nazwa pokoju"
 
-#: models.py:21
 msgid "Room users"
 msgstr "Uczestnicy"
 
-#: models.py:24 models.py:39
 msgid "Room"
 msgstr "Pokój"
 
-#: models.py:25
 msgid "Rooms"
 msgstr "Pokoje"
 
-#: models.py:41
 msgid "Message author"
 msgstr "Autor wiadomości"
 
-#: models.py:42 models.py:47 models.py:62
 msgid "Message"
 msgstr "Wiadomość"
 
-#: models.py:48
 msgid "Messages"
 msgstr "Wiadomości"
 
-#: models.py:64
 msgid "Message receiver"
 msgstr "Odbiorca wiadomości"
 
-#: models.py:66
 msgid "Message delivery date"
 msgstr "Data dostarczenia wiadomości"
 
-#: models.py:69
 msgid "Message delivery"
 msgstr "Dostarczenie wiadomości"
 
-#: models.py:70
 msgid "Messages delivery"
 msgstr "Dostarczenie wiadomości"
