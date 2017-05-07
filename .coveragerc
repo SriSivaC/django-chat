@@ -3,7 +3,8 @@
 branch = True
 source = chat
 omit =
-    chat/tests.py
+    chat/migrations/*.py
+    chat/south_migrations/*.py
 
 [report]
 # Regexes for lines to exclude from consideration
